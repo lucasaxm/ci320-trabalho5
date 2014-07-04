@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pokeballs:</strong>
+  <%= @bag.pokeballs %>
+</p>
+
+<p>
+  <strong>Potions:</strong>
+  <%= @bag.potions %>
+</p>
+
+<p>
+  <strong>Trainer:</strong>
+  <%= @bag.trainer_id %>
+</p>
+
+<%= link_to 'Edit', edit_bag_path(@bag) %> |
+<%= link_to 'Back', bags_path %>

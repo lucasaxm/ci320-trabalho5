@@ -1,0 +1,25 @@
+<%= form_for(@moves_pokemon) do |f| %>
+  <% if @moves_pokemon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@moves_pokemon.errors.count, "error") %> prohibited this moves_pokemon from being saved:</h2>
+
+      <ul>
+      <% @moves_pokemon.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pokemon_id %><br>
+    <%= f.number_field :pokemon_id %>
+  </div>
+  <div class="field">
+    <%= f.label :move_id %><br>
+    <%= f.number_field :move_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

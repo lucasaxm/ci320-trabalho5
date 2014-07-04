@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @trainer.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @trainer.city %>
+</p>
+
+<p>
+  <strong>Badges:</strong>
+  <%= @trainer.badges %>
+</p>
+
+<%= link_to 'Edit', edit_trainer_path(@trainer) %> |
+<%= link_to 'Back', trainers_path %>

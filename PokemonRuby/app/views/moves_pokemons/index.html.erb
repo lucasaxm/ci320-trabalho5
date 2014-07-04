@@ -1,0 +1,29 @@
+<h1>Listing moves_pokemons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pokemon</th>
+      <th>Move</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @moves_pokemons.each do |moves_pokemon| %>
+      <tr>
+        <td><%= moves_pokemon.pokemon_id %></td>
+        <td><%= moves_pokemon.move_id %></td>
+        <td><%= link_to 'Show', moves_pokemon %></td>
+        <td><%= link_to 'Edit', edit_moves_pokemon_path(moves_pokemon) %></td>
+        <td><%= link_to 'Destroy', moves_pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Moves pokemon', new_moves_pokemon_path %>

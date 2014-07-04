@@ -1,4 +1,14 @@
 PokemonRuby::Application.routes.draw do
+  resources :bags
+
+  resources :moves
+
+  resources :moves_pokemons
+
+  resources :pokemons
+
+  resources :trainers
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

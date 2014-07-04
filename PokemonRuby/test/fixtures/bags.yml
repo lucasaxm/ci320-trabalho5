@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pokeballs: 1
+  potions: 1
+  trainer_id: 1
+
+two:
+  pokeballs: 1
+  potions: 1
+  trainer_id: 1

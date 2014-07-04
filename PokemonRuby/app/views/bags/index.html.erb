@@ -1,0 +1,31 @@
+<h1>Listing bags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pokeballs</th>
+      <th>Potions</th>
+      <th>Trainer</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bags.each do |bag| %>
+      <tr>
+        <td><%= bag.pokeballs %></td>
+        <td><%= bag.potions %></td>
+        <td><%= bag.trainer_id %></td>
+        <td><%= link_to 'Show', bag %></td>
+        <td><%= link_to 'Edit', edit_bag_path(bag) %></td>
+        <td><%= link_to 'Destroy', bag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bag', new_bag_path %>
