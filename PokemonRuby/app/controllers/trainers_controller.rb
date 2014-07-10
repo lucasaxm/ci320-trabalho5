@@ -54,6 +54,7 @@ class TrainersController < ApplicationController
   # DELETE /trainers/1
   # DELETE /trainers/1.json
   def destroy
+    @trainer.pokemons.clear
     @trainer.destroy
     respond_to do |format|
       format.html { redirect_to trainers_url }
@@ -71,4 +72,5 @@ class TrainersController < ApplicationController
     def trainer_params
       params.require(:trainer).permit(:name, :city, :badges)
     end
+
 end
