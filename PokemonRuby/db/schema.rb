@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704205351) do
+ActiveRecord::Schema.define(version: 20140710005653) do
 
   create_table "bags", force: true do |t|
     t.integer  "pokeballs"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20140704205351) do
     t.string   "name"
     t.string   "city"
     t.integer  "badges"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "login"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,9 @@
 PokemonRuby::Application.routes.draw do
+  get "sessions/new"
+  get "sign_up" => "users#new", :as => "sign_up"  
+  root :to => "users#new"  
+  resources :users  
+
   resources :bags
 
   resources :moves
@@ -8,8 +13,6 @@ PokemonRuby::Application.routes.draw do
   resources :pokemons
 
   resources :trainers
-
-  root to: "trainers#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
