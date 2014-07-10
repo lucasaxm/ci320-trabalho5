@@ -16,20 +16,21 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :pokedex_number %><br>
+    <%= f.label "Pokedex number" %><br>
     <%= f.number_field :pokedex_number %>
   </div>
   <div class="field">
-    <%= f.label :poketype %><br>
+    <%= f.label "Type" %><br>
     <%= f.text_field :poketype %>
   </div>
   <div class="field">
-    <%= f.label :n_moves %><br>
+    <%= f.label "Number of moves" %><br>
     <%= f.number_field :n_moves %>
   </div>
   <div class="field">
     <%= f.label :trainer_id %><br>
-    <%= f.number_field :trainer_id %>
+    <% options = options_from_collection_for_select(@trainers, 'id', 'name') %>
+    <%= f.select :trainer_id, options, {:include_blank => 'Empty (wild)'} %>
   </div>
   <div class="actions">
     <%= f.submit %>

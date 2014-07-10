@@ -18,9 +18,9 @@
         <td><%= trainer.name %></td>
         <td><%= trainer.city %></td>
         <td><%= trainer.badges %></td>
-        <td><%= link_to 'Show', trainer %></td>
-        <td><%= link_to 'Edit', edit_trainer_path(trainer) %></td>
-        <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><button><%= link_to 'Show', trainer %></button></td>
+        <td><button><%= link_to 'Edit', edit_trainer_path(trainer) %></button></td>
+        <td><button><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Trainer', new_trainer_path %>
+<button><%= link_to 'New Trainer', new_trainer_path %></button>

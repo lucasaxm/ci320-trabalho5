@@ -15,10 +15,12 @@ class PokemonsController < ApplicationController
   # GET /pokemons/new
   def new
     @pokemon = Pokemon.new
+    @trainers = Trainer.all
   end
 
   # GET /pokemons/1/edit
   def edit
+    @trainers = Trainer.all
   end
 
   # POST /pokemons

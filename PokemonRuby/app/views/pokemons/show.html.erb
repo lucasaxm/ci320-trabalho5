@@ -22,7 +22,11 @@
 
 <p>
   <strong>Trainer:</strong>
-  <%= @pokemon.trainer_id %>
+  <% if @pokemon.trainer.nil? %>
+    None (Wild Pokemon)
+  <% else %>
+    <%= @pokemon.trainer.name %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
