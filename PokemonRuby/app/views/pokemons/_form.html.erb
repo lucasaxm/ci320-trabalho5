@@ -27,6 +27,7 @@
     <%= f.label "Number of moves" %><br>
     <%= f.number_field :n_moves %>
   </div>
+
   <div class="field">
     <%= f.label :trainer_id %><br>
     <% options = options_from_collection_for_select(@trainers, 'id', 'name') %>

@@ -1,5 +1,6 @@
 class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   # GET /pokemons
   # GET /pokemons.json
@@ -27,7 +28,7 @@ class PokemonsController < ApplicationController
   # POST /pokemons.json
   def create
     @pokemon = Pokemon.new(pokemon_params)
-
+    redirect_to :controller => "move", :action => "new", :id => @pokemon.id
     respond_to do |format|
       if @pokemon.save
         format.html { redirect_to @pokemon, notice: 'Pokemon was successfully created.' }

@@ -5,12 +5,9 @@
     <tr>
       <th>Name</th>
       <th>Pokedex number</th>
-      <th>Poketype</th>
-      <th>N moves</th>
-      <th>Trainer</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Type</th>
+      <th>Number of moves</th>
+      <th>Owner trainer</th>
     </tr>
   </thead>
 
@@ -21,10 +18,10 @@
         <td><%= pokemon.pokedex_number %></td>
         <td><%= pokemon.poketype %></td>
         <td><%= pokemon.n_moves %></td>
-        <td><%= pokemon.trainer_id %></td>
-        <td><%= link_to 'Show', pokemon %></td>
-        <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
-        <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pokemon.trainer.name %></td>
+        <td><%= link_to 'Show', pokemon, class: "link" %></td>
+        <td><%= link_to 'Edit', edit_pokemon_path(pokemon), class: "link" %></td>
+        <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' }, class: "link" %></td>
       </tr>
     <% end %>
   </tbody>

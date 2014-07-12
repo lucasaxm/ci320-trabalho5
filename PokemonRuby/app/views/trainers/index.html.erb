@@ -6,9 +6,6 @@
       <th>Name</th>
       <th>City</th>
       <th>Badges</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -18,9 +15,9 @@
         <td><%= trainer.name %></td>
         <td><%= trainer.city %></td>
         <td><%= trainer.badges %></td>
-        <td><button><%= link_to 'Show', trainer %></button></td>
-        <td><button><%= link_to 'Edit', edit_trainer_path(trainer) %></button></td>
-        <td><button><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+        <td><%= link_to 'Show', trainer, class: "link"%></td>
+        <td><%= link_to 'Edit', edit_trainer_path(trainer), class: "link"%></td>
+        <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' }, class: "link"%></td>
       </tr>
     <% end %>
   </tbody>

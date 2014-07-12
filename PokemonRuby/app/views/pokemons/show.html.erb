@@ -11,12 +11,12 @@
 </p>
 
 <p>
-  <strong>Poketype:</strong>
+  <strong>Type:</strong>
   <%= @pokemon.poketype %>
 </p>
 
 <p>
-  <strong>N moves:</strong>
+  <strong>Number of moves:</strong>
   <%= @pokemon.n_moves %>
 </p>
 
@@ -25,9 +25,9 @@
   <% if @pokemon.trainer.nil? %>
     None (Wild Pokemon)
   <% else %>
-    <%= @pokemon.trainer.name %>
+    <%= link_to @pokemon.trainer.name, @pokemon.trainer, class: "link" %>
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_pokemon_path(@pokemon) %> |
-<%= link_to 'Back', pokemons_path %>
+<button><%= link_to 'Edit', edit_pokemon_path(@pokemon) %></button> |
+<button><%= link_to 'Back', pokemons_path %></button>

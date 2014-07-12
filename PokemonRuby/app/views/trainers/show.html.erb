@@ -15,5 +15,28 @@
   <%= @trainer.badges %>
 </p>
 
-<%= link_to 'Edit', edit_trainer_path(@trainer) %> |
-<%= link_to 'Back', trainers_path %>
+<p>
+  <strong>Bag:</strong>
+  <% mochila = Bag.where(:trainer_id => @trainer.id) %>
+  <% if mochila.length>0 %>
+  	<p>\tPokeballs: <%= mochila.first.pokeballs %> </p>
+  	<p>\Potions: <%= mochila.first.potions %> </p>
+  <% else %>
+  	Empty
+  <% end %>
+</p>
+
+<p>
+  <strong>Pokemons:</strong>
+  <% pokemons = @trainer.pokemons %>
+  <% if pokemons.length>0 %>
+		<% pokemons.each do |p| %>
+			<p><%= link_to p.name, p, class: "link" %></p>
+		<% end %>
+	<% else %>
+		None
+	<% end %>
+</p>
+
+<button><%= link_to 'Edit', edit_trainer_path(@trainer) %></button> |
+<button><%= link_to 'Back', trainers_path %></button>

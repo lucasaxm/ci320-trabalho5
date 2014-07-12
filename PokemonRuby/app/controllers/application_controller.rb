@@ -7,5 +7,11 @@ class ApplicationController < ActionController::Base
   private  
   def current_user  
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end  
+  end
+
+  def check_login
+  	if session[:user_id] == nil
+  		redirect_to log_in_path, :notice => "Only users can view this page."
+  	end
+  end
 end
