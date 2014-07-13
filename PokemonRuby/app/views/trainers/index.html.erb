@@ -1,28 +1,31 @@
 <h1>Listing trainers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>City</th>
-      <th>Badges</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @trainers.each do |trainer| %>
+<% if @trainers.length > 0 %>
+  <table>
+    <thead>
       <tr>
-        <td><%= trainer.name %></td>
-        <td><%= trainer.city %></td>
-        <td><%= trainer.badges %></td>
-        <td><%= link_to 'Show', trainer, class: "link"%></td>
-        <td><%= link_to 'Edit', edit_trainer_path(trainer), class: "link"%></td>
-        <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' }, class: "link"%></td>
+        <th>Name</th>
+        <th>City</th>
+        <th>Badges</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @trainers.each do |trainer| %>
+        <tr>
+          <td><%= trainer.name %></td>
+          <td><%= trainer.city %></td>
+          <td><%= trainer.badges %></td>
+          <td><%= link_to 'Show', trainer, class: "link"%></td>
+          <td><%= link_to 'Edit', edit_trainer_path(trainer), class: "link"%></td>
+          <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' }, class: "link"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>There's no trainers to show</h2>
+<% end %>
 <br>
+
 
 <button><%= link_to 'New Trainer', new_trainer_path %></button>

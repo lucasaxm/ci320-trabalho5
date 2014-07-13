@@ -16,13 +16,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :movetype %><br>
-    <%= f.text_field :movetype %>
+    <%= f.label "Type" %><br>
+    <%= f.select :movetype, ["Normal","Fire","Fighting","Water","Flying","Grass","Poison","Electric","Ground","Psychic","Rock","Ice","Bug","Dragon","Ghost","Dark","Steel"] %>
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.select :category, ["Physical","Special","Status"] %>
   </div>
+  <% if @pokemon != nil %>
+    <input type="hidden" name="pokemon_id" value="<%= @pokemon.id %>" />
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

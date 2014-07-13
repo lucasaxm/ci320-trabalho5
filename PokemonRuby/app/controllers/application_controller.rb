@@ -5,11 +5,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_user  
     
   private  
-  def current_user  
+  def current_user
+    if (session[:user_id] != nil) && (User.where(:id => session[:user_id]).empty?)
+      reset_session
+    end
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def check_login
+    if (session[:user_id] != nil) && (User.where(:id => session[:user_id]).empty?)
+      reset_session
+    end
   	if session[:user_id] == nil
   		redirect_to log_in_path, :notice => "Only users can view this page."
   	end

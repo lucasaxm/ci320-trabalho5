@@ -1,31 +1,38 @@
 <h1>Listing pokemons</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Pokedex number</th>
-      <th>Type</th>
-      <th>Number of moves</th>
-      <th>Owner trainer</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pokemons.each do |pokemon| %>
+<% if @pokemons.length > 0 %>
+  <table>
+    <thead>
       <tr>
-        <td><%= pokemon.name %></td>
-        <td><%= pokemon.pokedex_number %></td>
-        <td><%= pokemon.poketype %></td>
-        <td><%= pokemon.n_moves %></td>
-        <td><%= pokemon.trainer.name %></td>
-        <td><%= link_to 'Show', pokemon, class: "link" %></td>
-        <td><%= link_to 'Edit', edit_pokemon_path(pokemon), class: "link" %></td>
-        <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' }, class: "link" %></td>
+        <th>Name</th>
+        <th>Pokedex number</th>
+        <th>Type</th>
+        <th>Number of moves</th>
+        <th>Owner trainer</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @pokemons.each do |pokemon| %>
+        <tr>
+          <td><%= pokemon.name %></td>
+          <td><%= pokemon.pokedex_number %></td>
+          <td><%= pokemon.poketype %></td>
+          <td><%= pokemon.n_moves %></td>
+          <% if pokemon.trainer != nil%>
+            <td><%= pokemon.trainer.name %></td>
+          <% else %>
+            <td><%= "None(Wild)" %></td>
+          <% end %>
+          <td><%= link_to 'Show', pokemon, class: "link" %></td>
+          <td><%= link_to 'Edit', edit_pokemon_path(pokemon), class: "link" %></td>
+          <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' }, class: "link" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>There's no pokemons to show</h2>
+<% end %>
 
 <br>
 

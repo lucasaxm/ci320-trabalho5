@@ -1,30 +1,32 @@
 <h1>Listing moves</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Movetype</th>
-      <th>Category</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @moves.each do |move| %>
+<% if @moves.length > 0 %>
+  <table>
+    <thead>
       <tr>
-        <td><%= move.name %></td>
-        <td><%= move.movetype %></td>
-        <td><%= move.category %></td>
-        <td><%= link_to 'Show', move %></td>
-        <td><%= link_to 'Edit', edit_move_path(move) %></td>
-        <td><%= link_to 'Destroy', move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Movetype</th>
+        <th>Category</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+        
+      <% @moves.each do |move| %>
+        <tr>
+          <td><%= move.name %></td>
+          <td><%= move.movetype %></td>
+          <td><%= move.category %></td>
+          <td><%= link_to 'Show', move %></td>
+          <td><%= link_to 'Edit', edit_move_path(move) %></td>
+          <td><%= link_to 'Destroy', move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2> There's no moves to show. </h2>
+<% end %>
 
 <br>
 

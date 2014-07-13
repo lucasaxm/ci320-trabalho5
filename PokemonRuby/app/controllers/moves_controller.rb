@@ -25,12 +25,39 @@ class MovesController < ApplicationController
   # POST /moves.json
   def create
     @move = Move.new(move_params)
-
-    respond_to do |format|
-      if @move.save
-        format.html { redirect_to @move, notice: 'Move was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @move }
+    if @move.save
+      if params[:pokemon_id] != nil
+        @pokemon=Pokemon.find(params[:pokemon_id])
+        if @pokemon.n_moves < 4
+          @pokemon.moves << @move
+          @pokemon.n_moves+=1
+          @pokemon.save
+          if @pokemon.n_moves < 4
+            respond_to do |format|
+              format.html {
+                flash[:notice] = "Add more moves if you want."
+                redirect_to :controller => "moves", :action => "new", :id => @pokemon.id
+              }
+            end
+          else
+            respond_to do |format|
+              format.html { redirect_to @move, notice: 'Move was successfully created.' }
+              format.json { render action: 'show', status: :created, location: @move }
+            end
+          end
+        else
+          respond_to do |format|
+            format.html { redirect_to root_url, notice: 'This pokemon already has 4 moves.' }
+          end
+        end
       else
+        respond_to do |format|
+          format.html { redirect_to @move, notice: 'Move was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @move }
+        end
+      end
+    else
+      respond_to do |format|
         format.html { render action: 'new' }
         format.json { render json: @move.errors, status: :unprocessable_entity }
       end

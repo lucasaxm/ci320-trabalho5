@@ -21,14 +21,9 @@
   </div>
   <div class="field">
     <%= f.label "Type" %><br>
-    <%= f.text_field :poketype %>
+    <%= f.select :poketype, ["Normal","Fire","Fighting","Water","Flying","Grass","Poison","Electric","Ground","Psychic","Rock","Ice","Bug","Dragon","Ghost","Dark","Steel"] %>
   </div>
-  <div class="field">
-    <%= f.label "Number of moves" %><br>
-    <%= f.number_field :n_moves %>
-  </div>
-
-  <div class="field">
+  <d1iv class="field">
     <%= f.label :trainer_id %><br>
     <% options = options_from_collection_for_select(@trainers, 'id', 'name') %>
     <%= f.select :trainer_id, options, {:include_blank => 'Empty (wild)'} %>

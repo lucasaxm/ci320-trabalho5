@@ -1,5 +1,8 @@
-<h1>New move</h1>
-
+<% if params[:id].nil? %>
+	<h1>New move</h1>
+<% else %>
+	<% @pokemon=Pokemon.find(params[:id]) %>
+	<h1>New move for <%= @pokemon.name %> </h1>
+<% end %>
 <%= render 'form' %>
-
 <%= link_to 'Back', moves_path %>

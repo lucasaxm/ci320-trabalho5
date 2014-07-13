@@ -28,10 +28,10 @@ class PokemonsController < ApplicationController
   # POST /pokemons.json
   def create
     @pokemon = Pokemon.new(pokemon_params)
-    redirect_to :controller => "move", :action => "new", :id => @pokemon.id
+    @pokemon.n_moves=0
     respond_to do |format|
       if @pokemon.save
-        format.html { redirect_to @pokemon, notice: 'Pokemon was successfully created.' }
+        format.html { redirect_to :controller => "moves", :action => "new", :id => @pokemon.id }
         format.json { render action: 'show', status: :created, location: @pokemon }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class PokemonsController < ApplicationController
   def update
     respond_to do |format|
       if @pokemon.update(pokemon_params)
-        format.html { redirect_to @pokemon, notice: 'Pokemon was successfully updated.' }
+        format.html { redirect_to :controller => "moves", :action => "new", :id => @pokemon.id }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
