@@ -21,7 +21,7 @@
   <% if mochila.length>0 %>
   	Pokeballs: <%= mochila.first.pokeballs %>, 
   	Potions: <%= mochila.first.potions %>.
-    <%= link_to "edit", edit_bag_path(@trainer.bag), class: "link" %>
+    <%= link_to "Edit", edit_bag_path(@trainer.bag), class: "link" %>
   <% else %>
   	Empty
   <% end %>

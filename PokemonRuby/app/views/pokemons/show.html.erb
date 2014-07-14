@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag @imgurl, class: "pokemon" %>
+<% if @imgurl != nil %>
+  <%= image_tag @imgurl, class: "pokemon" %>
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @pokemon.name %>
