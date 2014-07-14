@@ -1,6 +1,7 @@
 class MovesPokemonsController < ApplicationController
   before_action :set_moves_pokemon, only: [:show, :edit, :update, :destroy]
   before_action :check_login
+  before_action :notshow, only: [:index, :edit]
 
   # GET /moves_pokemons
   # GET /moves_pokemons.json
@@ -19,7 +20,7 @@ class MovesPokemonsController < ApplicationController
       @moves_pokemon = MovesPokemon.new
     else
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.html { redirect_to root_url, notice: "Only the admin can associate things." }
         format.json { head :no_content }
       end
     end
@@ -46,7 +47,7 @@ class MovesPokemonsController < ApplicationController
     end
     respond_to do |format|
       if @moves_pokemon.save
-        format.html { redirect_to @moves_pokemon, notice: 'Moves pokemon was successfully created.' }
+        format.html { redirect_to pokemon, notice: 'A new move was learned!' }
         format.json { render action: 'show', status: :created, location: @moves_pokemon }
       else
         format.html { render action: 'new' }

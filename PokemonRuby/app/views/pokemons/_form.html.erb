@@ -23,10 +23,10 @@
     <%= f.label "Type" %><br>
     <%= f.select :poketype, ["Normal","Fire","Fighting","Water","Flying","Grass","Poison","Electric","Ground","Psychic","Rock","Ice","Bug","Dragon","Ghost","Dark","Steel"] %>
   </div>
-  <d1iv class="field">
+  <div class="field">
     <%= f.label :trainer_id %><br>
     <% options = options_from_collection_for_select(@trainers, 'id', 'name') %>
-    <%= f.select :trainer_id, options, {:include_blank => 'Empty (wild)'} %>
+    <%= f.collection_select :trainer_id, @trainers, :id, :name, {:include_blank => 'Empty (wild)'} %>
   </div>
   <div class="actions">
     <%= f.submit %>
