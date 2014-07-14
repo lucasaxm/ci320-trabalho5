@@ -7,22 +7,39 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% flash.each do |name, msg| %>
-		<%= content_tag :div, msg, :id => "flash#{name}" %>
-	<% end %>
-	<div id="user_nav">
+	<!-- <header></header> -->
+	<nav id="user_nav">
 		<% if current_user %>
-			Logged in as <%= current_user.login %><br>
-			<button><%= link_to "Log out", log_out_path %></button>
+			<span id="loggedin">
+				Logged in as <br /><strong><%= current_user.login %></strong><br>
+			</span>
+			<span class="logbutton" id="logout" onclick="location.href='<%= log_out_path %>';" >
+				<%= link_to "Log out", log_out_path, class: "navlink" %>
+			</span>
 		<% else %>
-			<button><%= link_to "Sign up", sign_up_path %></button>
-			<button><%= link_to "Log in", log_in_path %></button>
+			<span class="logbutton" id="signup" onclick="location.href='<%= sign_up_path %>';">
+				<%= link_to "Sign up", sign_up_path, class: "navlink" %>
+			</span>
+			<span class="logbutton" id="login" onclick="location.href='<%= log_in_path %>';">
+				<%= link_to "Log in", log_in_path, class: "navlink" %>
+			</span>
 		<% end %>
-		<button><%= link_to "Trainers", trainers_path %></button>
-		<button><%= link_to "Pokemons", pokemons_path %></button>
-		<button><%= link_to "Moves", moves_path %></button>
-	</div>  
-<%= yield %>
+		<span class="navbutton" id="trainers" onclick="location.href='<%= trainers_path %>';" >
+			<%= link_to "Trainers", trainers_path, class: "navlink" %>
+		</span>
+		<span class="navbutton" id="pokemons" onclick="location.href='<%= pokemons_path %>';" >
+			<%= link_to "Pokemons", pokemons_path, class: "navlink" %>
+		</span>
+		<span class="navbutton" id="moves" onclick="location.href='<%= moves_path %>';" >
+			<%= link_to "Moves", moves_path, class: "navlink" %>
+		</span>
+		<span class="flashmsg">
+			<% flash.each do |name, msg| %>
+				<%= content_tag :div, msg, :id => "flash#{name}" %>
+			<% end %>
+		</span>
+	</nav>
+<div class="mainframe"><%= yield %></div>
 
 </body>
 </html>

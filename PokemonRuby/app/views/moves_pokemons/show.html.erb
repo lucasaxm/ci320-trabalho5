@@ -10,5 +10,5 @@
   <%= Move.find(@moves_pokemon.move_id).name %>
 </p>
 
-<%= link_to 'Edit', edit_moves_pokemon_path(@moves_pokemon) %> |
-<%= link_to 'Back', moves_pokemons_path %>
+<%= link_to 'Edit', edit_moves_pokemon_path(@moves_pokemon), class: "link" %> |
+<%= link_to 'Back', moves_pokemons_path, class: "link" %>

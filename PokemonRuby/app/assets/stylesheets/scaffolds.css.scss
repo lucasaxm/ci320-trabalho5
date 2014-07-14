@@ -1,9 +1,24 @@
+html {
+  background-image: image-url("bg.jpg"), linear-gradient(#fe9400, #ffca00);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+}
+
 body {
-  background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  height: 100%;
+}
+
+header{
+  height: 200px;
+  width: 100%;
+  background-image: image-url("Pokemon14.jpg");
+  background-position: center;
+  background-size: contain;
 }
 
 p, ol, ul, td {
@@ -19,14 +34,21 @@ pre {
 }
 
 a{
-  &.link{
-    color: #000;
-    &:visited {
-      color: #666;
+  color: white;
+  &:visited {
+    color: cornsilk;
+  }
+  &.navlink{
+    color: #AC2811;
+    text-decoration: none;
+    &:hover{
+      color: cornsilk;
     }
-    &:hover {
-      color: #fff;
-      background-color: #000;
+  }
+  &.link{
+    color: black;
+    &:visited {
+      color: black;
     }
   }
 }
@@ -42,12 +64,140 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
-}
 
-th, td{
+  &.mainframe{
+    border: 5px groove black;
+    border-radius: 10px;
+    height: auto;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 10px 40px 20px 40px;
+    text-align: center;
+    background-image: image-url("walking.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    background-color: #FF7D00;
+  }
+}
+th{
   vertical-align: center;
   border: solid 1px black;
-  padding: 3px
+  padding: 3px;
+  background-color: #FEF783;
+}
+
+td{
+  vertical-align: center;
+  border: solid 1px black;
+  padding: 3px;
+  background-color: #AC2811;
+  color: #FEF783;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav{
+  &#user_nav{
+    border: 5px groove black;
+    border-radius: 10px;
+    height: 50px;
+    // display: inline-block;
+    background-image: image-url("container.png");
+  }
+}
+
+span{
+  &#loggedin{
+    float: left;
+    padding: 7px;
+    background-color: burlywood;
+    display: block;
+    text-align: center;
+    border-right: solid;
+  }
+
+  &.logbutton{
+    float: left;
+    padding: 16px;
+    background-color: burlywood;
+    border-right: solid;
+    cursor: pointer;
+  }
+
+  &#moves{
+    box-shadow: inset 0 -5px 1px 0px rgba(41, 128, 185,1.0);
+    &:hover{
+      font-color: black;
+      background-color: rgba(41, 128, 185,1.0);
+    }
+  }
+  &#pokemons{
+    box-shadow: inset 0 -5px 1px 0px rgba(192, 57, 43,1.0);
+    &:hover{
+      font-color: black;
+      background-color: rgba(192, 57, 43,1.0);
+    }
+  }
+  &#trainers{
+    box-shadow: inset 0 -5px 1px 0px rgba(39, 174, 96,1.0);
+    &:hover{
+      font-color: black;
+      background-color: rgba(39, 174, 96,1.0);
+    }
+  }
+  &#logout{
+    box-shadow: inset 0 -5px 1px 0px rgb(171, 183, 183);
+    &:hover{
+      font-color: black;
+      background-color: rgb(171, 183, 183);
+    }
+  }
+  &#login{
+    box-shadow: inset 0 -5px 1px 0px rgb(171, 183, 183);
+    &:hover{
+      font-color: black;
+      background-color: rgb(171, 183, 183);
+    }
+  }
+  &#signup{
+    box-shadow: inset 0 -5px 1px 0px rgba(127, 140, 141,1.0);
+    &:hover{
+      font-color: black;
+      background-color: rgba(127, 140, 141,1.0);
+    }
+  }
+
+  &.navbutton{
+    float: right;
+    padding: 16px;
+    background-color: burlywood;
+    border-left: solid;
+    cursor: pointer;
+  }
+
+  &.flashmsg{
+    text-align: center;
+    color: red;
+    padding: 16px;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+}
+
+img{
+  &.pokemon{
+    height: 175px;
+    border: groove 5px grey;
+    border-radius: 10px;
+  }
+
 }
 
 #notice {

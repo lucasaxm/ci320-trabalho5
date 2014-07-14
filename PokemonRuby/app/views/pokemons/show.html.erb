@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= image_tag @imgurl, class: "pokemon" %>
 <p>
   <strong>Name:</strong>
   <%= @pokemon.name %>
@@ -38,5 +38,5 @@
   <% end %>
 </p>
 
-<button><%= link_to 'Edit', edit_pokemon_path(@pokemon) %></button> |
-<button><%= link_to 'Back', pokemons_path %></button>
+<%= link_to 'Edit', edit_pokemon_path(@pokemon), class: "link" %> |
+<%= link_to 'Back', pokemons_path, class: "link" %>

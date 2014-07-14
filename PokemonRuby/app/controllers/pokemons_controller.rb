@@ -11,6 +11,7 @@ class PokemonsController < ApplicationController
   # GET /pokemons/1
   # GET /pokemons/1.json
   def show
+    @imgurl="http://img.pokemondb.net/artwork/"+Pokemon.find(params[:id]).name.downcase+".jpg"
   end
 
   # GET /pokemons/new
