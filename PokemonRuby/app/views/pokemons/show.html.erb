@@ -16,8 +16,17 @@
 </p>
 
 <p>
-  <strong>Number of moves:</strong>
-  <%= @pokemon.n_moves %>
+  <strong>Moves:</strong>
+  <% if @pokemon.moves.length == 0 %>
+    None
+  <% else %>
+    <% @pokemon.moves.each do |move| %>
+      <br /> <%= link_to move.name, move, class: "link" %>
+      <% if @adm %>
+        - <%= link_to "forget", controller: :moves, action: :forget, pokemon_id: @pokemon.id, move_id: move.id, data: { confirm: 'Are you sure?' }, class: "link" %>
+      <% end %>
+    <% end %>
+  <% end %>
 </p>
 
 <p>

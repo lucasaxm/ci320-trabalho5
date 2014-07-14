@@ -19,10 +19,9 @@
     <%= f.label :potions %><br>
     <%= f.number_field :potions %>
   </div>
-  <div class="field">
-    <%= f.label :trainer_id %><br>
-    <%= f.number_field :trainer_id %>
-  </div>
+  <% if @trainer != nil %>
+    <input type="hidden" name="trainer_id" value="<%= @trainer.id %>" />
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

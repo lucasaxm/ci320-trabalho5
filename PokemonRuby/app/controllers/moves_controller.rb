@@ -1,5 +1,6 @@
 class MovesController < ApplicationController
   before_action :set_move, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   # GET /moves
   # GET /moves.json
@@ -14,11 +15,24 @@ class MovesController < ApplicationController
 
   # GET /moves/new
   def new
-    @move = Move.new
+    if @adm
+      @move = Move.new
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /moves/1/edit
   def edit
+  if !@adm
+    respond_to do |format|
+      format.html { redirect_to moves_path, notice: "Only the admin can edit things." }
+      format.json { head :no_content }
+    end
+  end
   end
 
   # POST /moves
@@ -35,13 +49,13 @@ class MovesController < ApplicationController
           if @pokemon.n_moves < 4
             respond_to do |format|
               format.html {
-                flash[:notice] = "Add more moves if you want."
+                flash[:notice] = "You can create more moves (max: 4)"
                 redirect_to :controller => "moves", :action => "new", :id => @pokemon.id
               }
             end
           else
             respond_to do |format|
-              format.html { redirect_to @move, notice: 'Move was successfully created.' }
+              format.html { redirect_to @pokemon, notice: 'Pokemon successfully created.' }
               format.json { render action: 'show', status: :created, location: @move }
             end
           end
@@ -81,9 +95,31 @@ class MovesController < ApplicationController
   # DELETE /moves/1
   # DELETE /moves/1.json
   def destroy
-    @move.destroy
+    if @adm
+      @move.pokemons.each do |pokemon|
+        pokemon.n_moves-=1
+        pokemon.save
+      end
+      @move.destroy
+      respond_to do |format|
+        format.html { redirect_to moves_url }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to moves_path, notice: "Only the admin can destroy things." }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def forget
+    MovesPokemon.where(:pokemon_id => params[:pokemon_id], :move_id => params[:move_id]).first.destroy
+    pokemon = Pokemon.find(params[:pokemon_id])
+    pokemon.n_moves-=1
+    pokemon.save
     respond_to do |format|
-      format.html { redirect_to moves_url }
+      format.html { redirect_to pokemon }
       format.json { head :no_content }
     end
   end

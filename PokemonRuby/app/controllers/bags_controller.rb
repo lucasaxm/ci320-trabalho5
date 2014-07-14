@@ -1,5 +1,7 @@
 class BagsController < ApplicationController
   before_action :set_bag, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
+  before_action :notshow, only: [:index]
 
   # GET /bags
   # GET /bags.json
@@ -14,11 +16,24 @@ class BagsController < ApplicationController
 
   # GET /bags/new
   def new
-    @bag = Bag.new
+    if @adm
+      @bag = Bag.new
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /bags/1/edit
   def edit
+    if !@adm
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can edit things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # POST /bags
@@ -26,11 +41,29 @@ class BagsController < ApplicationController
   def create
     @bag = Bag.new(bag_params)
 
-    respond_to do |format|
-      if @bag.save
-        format.html { redirect_to @bag, notice: 'Bag was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @bag }
+    if @bag.save
+      if params[:trainer_id] != nil
+        @trainer=Trainer.find(params[:trainer_id])
+        if @trainer.bag.nil?
+          @trainer.bag = @bag
+          @trainer.save
+          respond_to do |format|
+            format.html { redirect_to @trainer, notice: 'Trainer successfully created.' }
+            format.json { render action: 'show', status: :created, location: @bag }
+          end
+        else
+          respond_to do |format|
+            format.html { redirect_to root_url, notice: 'This trainer already has a bag.' }
+          end
+        end
       else
+        respond_to do |format|
+          format.html { redirect_to @bag, notice: 'Bag was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @bag }
+        end
+      end
+    else
+      respond_to do |format|
         format.html { render action: 'new' }
         format.json { render json: @bag.errors, status: :unprocessable_entity }
       end
@@ -55,9 +88,16 @@ class BagsController < ApplicationController
   # DELETE /bags/1.json
   def destroy
     @bag.destroy
-    respond_to do |format|
-      format.html { redirect_to bags_url }
-      format.json { head :no_content }
+    if @adm
+      respond_to do |format|
+        format.html { redirect_to bags_url }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can destroy things." }
+        format.json { head :no_content }
+      end
     end
   end
 

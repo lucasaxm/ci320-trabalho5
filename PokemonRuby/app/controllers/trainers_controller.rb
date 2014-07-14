@@ -15,11 +15,24 @@ class TrainersController < ApplicationController
 
   # GET /trainers/new
   def new
-    @trainer = Trainer.new
+    if @adm
+      @trainer = Trainer.new
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /trainers/1/edit
   def edit
+    if !@adm
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can edit things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # POST /trainers
@@ -29,7 +42,7 @@ class TrainersController < ApplicationController
 
     respond_to do |format|
       if @trainer.save
-        format.html { redirect_to @trainer, notice: 'Trainer was successfully created.' }
+        format.html { redirect_to :controller => "bags", :action => "new", :id => @trainer.id }
         format.json { render action: 'show', status: :created, location: @trainer }
       else
         format.html { render action: 'new' }
@@ -55,11 +68,18 @@ class TrainersController < ApplicationController
   # DELETE /trainers/1
   # DELETE /trainers/1.json
   def destroy
-    @trainer.pokemons.clear
-    @trainer.destroy
-    respond_to do |format|
-      format.html { redirect_to trainers_url }
-      format.json { head :no_content }
+    if @adm
+      @trainer.pokemons.clear
+      @trainer.destroy
+      respond_to do |format|
+        format.html { redirect_to trainers_url }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can destroy things." }
+        format.json { head :no_content }
+      end
     end
   end
 

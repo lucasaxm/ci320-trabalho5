@@ -19,8 +19,9 @@
   <strong>Bag:</strong>
   <% mochila = Bag.where(:trainer_id => @trainer.id) %>
   <% if mochila.length>0 %>
-  	<p>\tPokeballs: <%= mochila.first.pokeballs %> </p>
-  	<p>\Potions: <%= mochila.first.potions %> </p>
+  	Pokeballs: <%= mochila.first.pokeballs %>, 
+  	Potions: <%= mochila.first.potions %>.
+    <%= link_to "edit", edit_bag_path(@trainer.bag), class: "link" %>
   <% else %>
   	Empty
   <% end %>

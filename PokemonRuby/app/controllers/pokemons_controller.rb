@@ -15,13 +15,27 @@ class PokemonsController < ApplicationController
 
   # GET /pokemons/new
   def new
-    @pokemon = Pokemon.new
-    @trainers = Trainer.all
+    if @adm
+      @pokemon = Pokemon.new
+      @trainers = Trainer.all
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /pokemons/1/edit
   def edit
-    @trainers = Trainer.all
+    if @adm
+      @trainers = Trainer.all
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can edit things." }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # POST /pokemons
@@ -57,10 +71,18 @@ class PokemonsController < ApplicationController
   # DELETE /pokemons/1
   # DELETE /pokemons/1.json
   def destroy
-    @pokemon.destroy
-    respond_to do |format|
-      format.html { redirect_to pokemons_url }
-      format.json { head :no_content }
+    if @adm
+      @pokemon.moves.clear
+      @pokemon.destroy
+      respond_to do |format|
+        format.html { redirect_to pokemons_url }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: "Only the admin can destroy things." }
+        format.json { head :no_content }
+      end
     end
   end
 

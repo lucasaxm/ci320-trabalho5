@@ -24,8 +24,10 @@
             <td><%= "None(Wild)" %></td>
           <% end %>
           <td><%= link_to 'Show', pokemon, class: "link" %></td>
-          <td><%= link_to 'Edit', edit_pokemon_path(pokemon), class: "link" %></td>
-          <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' }, class: "link" %></td>
+          <% if @adm %>
+            <td><%= link_to 'Edit', edit_pokemon_path(pokemon), class: "link" %></td>
+            <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' }, class: "link" %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -37,3 +39,4 @@
 <br>
 
 <%= link_to 'New Pokemon', new_pokemon_path %>
+<%= link_to 'Associate Moves', new_moves_pokemon_path %>

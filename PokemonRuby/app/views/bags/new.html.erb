@@ -1,4 +1,9 @@
-<h1>New bag</h1>
+<% if params[:id].nil? %>
+	<h1>New bag</h1>
+<% else %>
+	<% @trainer=Trainer.find(params[:id]) %>
+	<h1>New bag for <%= @trainer.name %> </h1>
+<% end %>
 
 <%= render 'form' %>
 

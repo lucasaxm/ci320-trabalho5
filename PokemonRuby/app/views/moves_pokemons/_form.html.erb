@@ -12,14 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :pokemon_id %><br>
-    <%= f.number_field :pokemon_id %>
+    <%= f.label "Pokemon" %><br>
+    <% allpokemons=Pokemon.all %>
+    <% selpokemons=Array.new %>
+    <% allpokemons.each do |pokemon| %>
+      <% if pokemon.n_moves < 4 %>
+        <% selpokemons << pokemon %>
+      <% end %>
+    <% end %>
+    <% options = options_from_collection_for_select(selpokemons, 'id', 'name') %>
+    <%= f.select :pokemon_id, options %>
   </div>
   <div class="field">
     <%= f.label :move_id %><br>
-    <%= f.number_field :move_id %>
+    <% options = options_from_collection_for_select(Move.all, 'id', 'name') %>
+    <%= f.select :move_id, options %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Associate" %>
   </div>
 <% end %>

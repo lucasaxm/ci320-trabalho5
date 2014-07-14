@@ -18,6 +18,14 @@ class ApplicationController < ActionController::Base
     end
   	if session[:user_id] == nil
   		redirect_to log_in_path, :notice => "Only users can view this page."
-  	end
+  	elsif session[:user_id] == 1
+      @adm = true
+    else
+      @adm = false
+    end
+  end
+
+  def notshow
+    redirect_to root_url
   end
 end

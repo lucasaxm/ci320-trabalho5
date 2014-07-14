@@ -2,12 +2,12 @@
 
 <p>
   <strong>Pokemon:</strong>
-  <%= @moves_pokemon.pokemon_id %>
+  <%= Pokemon.find(@moves_pokemon.pokemon_id).name %>
 </p>
 
 <p>
   <strong>Move:</strong>
-  <%= @moves_pokemon.move_id %>
+  <%= Move.find(@moves_pokemon.move_id).name %>
 </p>
 
 <%= link_to 'Edit', edit_moves_pokemon_path(@moves_pokemon) %> |

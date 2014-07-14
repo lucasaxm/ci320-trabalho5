@@ -16,8 +16,10 @@
           <td><%= trainer.city %></td>
           <td><%= trainer.badges %></td>
           <td><%= link_to 'Show', trainer, class: "link"%></td>
-          <td><%= link_to 'Edit', edit_trainer_path(trainer), class: "link"%></td>
-          <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' }, class: "link"%></td>
+          <% if @adm %>
+            <td><%= link_to 'Edit', edit_trainer_path(trainer), class: "link"%></td>
+            <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' }, class: "link"%></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
