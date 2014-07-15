@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    if session[:user_id] != nil
+    if (session[:user_id] != nil) && (session[:user_id] != 1)
       redirect_to trainers_path, :notice => "You are already logged in!"
     end
     @user = User.new
@@ -21,9 +21,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @bag=Bag.find(params[:id])
-    @bag.destroy
-    if @adm
+    @user=User.find(params[:id])
+    @user.destroy
+    if session[:user_id]==1
       respond_to do |format|
         format.html { redirect_to users_url }
         format.json { head :no_content }

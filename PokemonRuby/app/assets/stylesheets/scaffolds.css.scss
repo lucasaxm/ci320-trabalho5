@@ -172,6 +172,13 @@ span{
       background-color: rgba(127, 140, 141,1.0);
     }
   }
+  &#users{
+    box-shadow: inset 0 -5px 1px 0px rgba(127, 140, 141,1.0);
+    &:hover{
+      font-color: black;
+      background-color: rgba(127, 140, 141,1.0);
+    }
+  }
 
   &.navbutton{
     float: right;

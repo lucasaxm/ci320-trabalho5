@@ -16,9 +16,11 @@
 			<span class="logbutton" id="logout" onclick="location.href='<%= log_out_path %>';" >
 				<%= link_to "Log out", log_out_path, class: "navlink" %>
 			</span>
-			<span class="logbutton" id="users" onclick="location.href='<%= users_path %>';">
-				<%= link_to "Manage Users", log_in_path, class: "navlink" %>
-			</span>
+			<% if session[:user_id]==1  %>
+				<span class="logbutton" id="users" onclick="location.href='<%= users_path %>';">
+					<%= link_to "Manage Users", log_in_path, class: "navlink" %>
+				</span>
+			<% end %>
 		<% else %>
 			<span class="logbutton" id="signup" onclick="location.href='<%= sign_up_path %>';">
 				<%= link_to "Sign up", sign_up_path, class: "navlink" %>
