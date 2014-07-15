@@ -1,0 +1,26 @@
+<h1>Listing users</h1>
+<% if @users.length > 1 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Login</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <% if user.id != 1 %>
+            <td><%= user.login %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "link"%></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>There's no users to show</h2>
+<% end %>
+<br>
+
+<%= link_to 'New User', new_user_path, class: "link" %>
