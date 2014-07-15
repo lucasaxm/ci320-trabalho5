@@ -11,7 +11,18 @@ class PokemonsController < ApplicationController
   # GET /pokemons/1
   # GET /pokemons/1.json
   def show
-    @imgurl="http://img.pokemondb.net/artwork/"+Pokemon.find(params[:id]).name.downcase+".jpg"
+    pokemon=Pokemon.find(params[:id])
+    File.open(Rails.root.join("public","pokedex.txt"), "r") { |file|
+      file.each_line do |line|
+        name=line.split('-').first
+        if name==pokemon.name.downcase
+          pokedex=line.split('-')[1].to_s.chomp
+          pokedex="0"*(3-pokedex.length)+pokedex
+          @imgurl="http://assets22.pokemon.com/assets/cms2/img/pokedex/full/"+pokedex+".png"
+          break;
+        end
+      end
+    }
   end
 
   # GET /pokemons/new
