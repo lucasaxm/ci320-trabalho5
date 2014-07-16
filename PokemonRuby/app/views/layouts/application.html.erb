@@ -13,31 +13,31 @@
 			<span id="loggedin">
 				Logged in as <br /><strong><%= current_user.login %></strong><br>
 			</span>
-			<span class="logbutton" id="logout" onclick="location.href='<%= log_out_path %>';" >
-				<%= link_to "Log out", log_out_path, class: "navlink" %>
-			</span>
+			<%= link_to (log_out_path) do %>
+				<span class="logbutton" id="logout" onclick="location.href='<%= log_out_path %>';" > Log out </span>
+			<% end %>
 			<% if session[:user_id]==1  %>
-				<span class="logbutton" id="users" onclick="location.href='<%= users_path %>';">
-					<%= link_to "Manage Users", log_in_path, class: "navlink" %>
-				</span>
+				<%= link_to (users_path) do %>
+					<span class="logbutton" id="users" onclick="location.href='<%= users_path %>';" > Manage Users </span>
+				<% end %>
 			<% end %>
 		<% else %>
-			<span class="logbutton" id="signup" onclick="location.href='<%= sign_up_path %>';">
-				<%= link_to "Sign up", sign_up_path, class: "navlink" %>
-			</span>
-			<span class="logbutton" id="login" onclick="location.href='<%= log_in_path %>';">
-				<%= link_to "Log in", log_in_path, class: "navlink" %>
-			</span>
+			<%= link_to (sign_up_path) do %>
+				<span class="logbutton" id="signup" onclick="location.href='<%= sign_up_path %>';" > Sign up </span>
+			<% end %>
+			<%= link_to (log_in_path) do %>
+				<span class="logbutton" id="login" onclick="location.href='<%= log_in_path %>';" > Log in </span>
+			<% end %>
 		<% end %>
-		<span class="navbutton" id="trainers" onclick="location.href='<%= trainers_path %>';" >
-			<%= link_to "Trainers", trainers_path, class: "navlink" %>
-		</span>
-		<span class="navbutton" id="pokemons" onclick="location.href='<%= pokemons_path %>';" >
-			<%= link_to "Pokemons", pokemons_path, class: "navlink" %>
-		</span>
-		<span class="navbutton" id="moves" onclick="location.href='<%= moves_path %>';" >
-			<%= link_to "Moves", moves_path, class: "navlink" %>
-		</span>
+		<%= link_to (moves_path) do %>
+			<span class="navbutton" id="moves" onclick="location.href='<%= moves_path %>';" > Moves </span>
+		<% end %>
+		<%= link_to (trainers_path) do %>
+			<span class="navbutton" id="trainers" onclick="location.href='<%= trainers_path %>';" > Trainers </span>
+		<% end %>
+		<%= link_to (pokemons_path) do %>
+			<span class="navbutton" id="pokemons" onclick="location.href='<%= pokemons_path %>';" > Pokemons </span>
+		<% end %>
 		<span class="flashmsg">
 			<% flash.each do |name, msg| %>
 				<%= content_tag :div, msg, :id => "flash#{name}" %>

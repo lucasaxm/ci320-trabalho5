@@ -19,7 +19,7 @@ class MovesController < ApplicationController
       @move = Move.new
     else
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.html { redirect_to moves_path, notice: "Only the admin can create things." }
         format.json { head :no_content }
       end
     end
@@ -29,7 +29,7 @@ class MovesController < ApplicationController
   def edit
   if !@adm
     respond_to do |format|
-      format.html { redirect_to moves_path, notice: "Only the admin can edit things." }
+      format.html { redirect_to @move, notice: "Only the admin can edit things." }
       format.json { head :no_content }
     end
   end

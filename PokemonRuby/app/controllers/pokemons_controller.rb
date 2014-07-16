@@ -32,7 +32,7 @@ class PokemonsController < ApplicationController
       @trainers = Trainer.all
     else
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.html { redirect_to pokemons_path, notice: "Only the admin can create things." }
         format.json { head :no_content }
       end
     end
@@ -44,7 +44,7 @@ class PokemonsController < ApplicationController
       @trainers = Trainer.all
     else
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can edit things." }
+        format.html { redirect_to @pokemon, notice: "Only the admin can edit things." }
         format.json { head :no_content }
       end
     end

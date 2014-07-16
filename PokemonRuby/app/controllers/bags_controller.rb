@@ -30,7 +30,7 @@ class BagsController < ApplicationController
   def edit
     if !@adm
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can edit things." }
+        format.html { redirect_to @bag.trainer, notice: "Only the admin can edit things." }
         format.json { head :no_content }
       end
     end

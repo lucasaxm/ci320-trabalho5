@@ -20,7 +20,7 @@ class MovesPokemonsController < ApplicationController
       @moves_pokemon = MovesPokemon.new
     else
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can associate things." }
+        format.html { redirect_to pokemons_path, notice: "Only the admin can teach moves." }
         format.json { head :no_content }
       end
     end
@@ -39,19 +39,26 @@ class MovesPokemonsController < ApplicationController
   # POST /moves_pokemons
   # POST /moves_pokemons.json
   def create
-    @moves_pokemon = MovesPokemon.new(moves_pokemon_params)
-    if @moves_pokemon.save
-      pokemon=Pokemon.find(@moves_pokemon.pokemon_id)
-      pokemon.n_moves+=1
-      pokemon.save
-    end
-    respond_to do |format|
-      if @moves_pokemon.save
-        format.html { redirect_to pokemon, notice: 'A new move was learned!' }
+    if MovesPokemon.where(pokemon_id: moves_pokemon_params["pokemon_id"], move_id: moves_pokemon_params["move_id"]).length > 0
+      respond_to do |format|
+        format.html { redirect_to new_moves_pokemon_path, notice: 'This pokemon already knows this move!' }
         format.json { render action: 'show', status: :created, location: @moves_pokemon }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @moves_pokemon.errors, status: :unprocessable_entity }
+      end
+    else
+      @moves_pokemon = MovesPokemon.new(moves_pokemon_params)
+      if @moves_pokemon.save
+        pokemon=Pokemon.find(@moves_pokemon.pokemon_id)
+        pokemon.n_moves+=1
+        pokemon.save
+      end
+      respond_to do |format|
+        if @moves_pokemon.save
+          format.html { redirect_to pokemon, notice: 'A new move was learned!' }
+          format.json { render action: 'show', status: :created, location: @moves_pokemon }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @moves_pokemon.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

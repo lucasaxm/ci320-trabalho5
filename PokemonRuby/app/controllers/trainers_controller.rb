@@ -19,7 +19,7 @@ class TrainersController < ApplicationController
       @trainer = Trainer.new
     else
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can create things." }
+        format.html { redirect_to trainers_path, notice: "Only the admin can create things." }
         format.json { head :no_content }
       end
     end
@@ -29,7 +29,7 @@ class TrainersController < ApplicationController
   def edit
     if !@adm
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "Only the admin can edit things." }
+        format.html { redirect_to @trainer, notice: "Only the admin can edit things." }
         format.json { head :no_content }
       end
     end

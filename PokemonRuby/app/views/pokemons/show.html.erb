@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <% if @imgurl != nil %>
   <%= image_tag @imgurl, class: "pokemon" %>
 <% end %>
@@ -25,7 +24,7 @@
     <% @pokemon.moves.each do |move| %>
       <br /> <%= link_to move.name, move, class: "link" %>
       <% if @adm %>
-        - <%= link_to "forget", controller: :moves, action: :forget, pokemon_id: @pokemon.id, move_id: move.id, data: { confirm: 'Are you sure?' }, class: "link" %>
+        - <%= link_to "Forget", controller: :moves, action: :forget, pokemon_id: @pokemon.id, move_id: move.id, data: { confirm: 'Are you sure?' }, class: "link" %>
       <% end %>
     <% end %>
   <% end %>
