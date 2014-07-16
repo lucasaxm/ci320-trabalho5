@@ -1,13 +1,9 @@
 <%= form_for(@move) do |f| %>
   <% if @move.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@move.errors.count, "error") %> prohibited this move from being saved:</h2>
-
-      <ul>
-      <% @move.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div>  
+      <% for message in @move.errors.full_messages %>  
+        <span class="error_text"><%= message %></span><br />
+      <% end %>  
     </div>
   <% end %>
 

@@ -1,13 +1,9 @@
 <%= form_for(@moves_pokemon) do |f| %>
   <% if @moves_pokemon.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@moves_pokemon.errors.count, "error") %> prohibited this moves_pokemon from being saved:</h2>
-
-      <ul>
-      <% @moves_pokemon.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div>  
+      <% for message in @moves_pokemon.errors.full_messages %>  
+        <span class="error_text"><%= message %></span><br />
+      <% end %>  
     </div>
   <% end %>
 
